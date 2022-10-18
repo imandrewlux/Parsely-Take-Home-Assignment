@@ -4,7 +4,7 @@ function NavButtons(props){
 	let updatedLink = null;
 
 // When filtering by author, the pagination links have the author query as an encoded array, which returns no results.
-// if that array is present, this removes the author query from the URL and replaces it with a single author name for the query.
+// If that array is present, this removes the author query from the URL and replaces it with a single author name for the query.
 const fixLinks = (link) => {
 	if(link.includes("%5B%27")){
 		let oldAuthor = encodeURIComponent(props.author);

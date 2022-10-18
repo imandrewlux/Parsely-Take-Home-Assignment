@@ -17,14 +17,15 @@ function App() {
   const [apiURL, setApiUrl] = useState("");
   const [pageNum, setPageNum] = useState(1);
 
-/* thows an error if the API call encounters one */
+//throws an error if the API call encounters one
   function handleErrors(response) {
     if (!response.ok) {
         throw Error(response);    }
     return response;
   }
 
-  /* Getting data from API call using built in fetch */
+  // Getting data from API call using built in fetch
+  // Async function is triggering the no unused variables error, I've disabled it for just this function
    /* eslint-disable no-unused-vars */
   const getParselyData = async (parselyUrl) => {
   const response = await fetch(parselyUrl).then(handleErrors)
@@ -37,7 +38,7 @@ function App() {
   }
   /* eslint-enable no-unused-vars */
 
-/* updates the API url whenever sort is changed or searchquery is changed */
+// updates the API url whenever sort is changed or searchquery is changed
   useEffect(()=>{
     const delayDebounceFn = setTimeout(() => {
       if(section && author){
@@ -56,7 +57,7 @@ function App() {
     return () => clearTimeout(delayDebounceFn)
   },[searchQuery, sort]);
 
-/* sends the api call whenever the apiurl state is updated. */
+// sends the api call whenever the apiurl state is updated.
   useEffect(() => {
       if(searchQuery.length){
       getParselyData(apiURL);
@@ -66,7 +67,7 @@ function App() {
       }
   }, [apiURL]);
 
-/* clears all the values back to their original state */
+// clears most the values back to their original state (Does not incllude sort)
   const clearValue = () => {
     setLoading(false);
     setSearchResults("");
@@ -77,33 +78,33 @@ function App() {
     setPageNum(1);
   }
 
-  /* encoding Sections the same way the pagination buttons do so i can add in and remove sections query  */
+  // Encoding Sections the same way the pagination buttons do so i can add in and remove sections query
   const encodeSection = (val) => {
     let fixedLink = encodeURIComponent(val).replaceAll('%20', "+");
     return fixedLink;
   }
 
-  /* calls the pagination link returned from the API and sets the page number */
+  // Calls the pagination link returned from the API and sets the page number
   const paginateClick = (val, num) => {
     setLoading(true);
     setApiUrl(val);
     setPageNum(num);
   }
 
-  /* changes the state of the sort query  */
+  // Changes the state of the sort query
   const sortFilter = (val) => {
     setLoading(true);
     setSort(val);
   }
 
-/* appends the API Url with a Section query */
+// Appends the API Url with a Section query
   const sectionFilter = (val) => {
     setLoading(true);
     setSection(val);
     setApiUrl(apiURL + `&section=${encodeSection(val)}`);
   }
 
-/* Clears the Section query from the API URL */
+// Clears the Section query from the API URL
   const clearSection = () => {
     setLoading(true);
     setApiUrl(apiURL.replace(`&section=${encodeSection(section)}`, "") );
@@ -111,21 +112,21 @@ function App() {
     setSection("");
   }
 
-/* appends the API Url with a Author query */
+// Appends the API Url with a Author query
   const authorFilter = (val) => {
     setLoading(true);
     setAuthor(val);
     setApiUrl(apiURL + `&author=${encodeURIComponent(val)}`);
   }
 
-/* Clears the Author query from the API URL */
+// Clears the Author query from the API URL
   const clearAuthor = () => {
     setLoading(true);
     setApiUrl(apiURL.replace(`&author=${encodeURIComponent(author)}`, "") );
     setAuthor("")
   }
 
-/* changes the cursor when loading is set to true */
+// Changes the cursor when loading is set to true
   if(loading){
     document.body.style.cursor='wait';
   }else{
