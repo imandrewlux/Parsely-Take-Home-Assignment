@@ -1,5 +1,5 @@
 # Parse.ly Take Home Assignment
-    Andrew Lux's take home assignment for Parse.ly Frontend Engineer (Design & UX) Position.
+ Andrew Lux's take home assignment for Parse.ly Frontend Engineer (Design & UX) Position.
 
 ## Running 
  - Download or clone project.
