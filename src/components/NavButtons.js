@@ -18,9 +18,9 @@ const fixLinks = (link) => {
 
 
 	return(<div className="button-container">
-        {props.links && props.links.prev ? <span className="button" onClick={() => {props.paginateClick(fixLinks(props.links.prev), (props.pageNum - 1) );}}>&lt;</span> : <span className="button no-hover"></span>}
-        {props.links && props.links.first ? <span className="button clear" onClick={() => {props.paginateClick(fixLinks(props.links.first), 1);}}>{props.pageNum}</span> : <span className="button no-hover"></span>}
-        {props.links && props.links.next ? <span className="button" onClick={() => {props.paginateClick(fixLinks(props.links.next), (props.pageNum + 1) );}}>&gt;</span> : <span className="button no-hover"></span>}
+        {props.links && props.links.prev ? <span className="button" onClick={() => {props.paginateClick(fixLinks(props.links.prev), (props.pageNum - 1) );window.scrollTo({top: 0, left: 0, behavior: 'smooth'});}}>&lt;</span> : <span className="button no-hover"></span>}
+        {props.links && props.links.first ? <span className="button clear" onClick={() => {props.paginateClick(fixLinks(props.links.first), 1);window.scrollTo({top: 0, left: 0, behavior: 'smooth'});}}>{props.pageNum}</span> : <span className="button no-hover"></span>}
+        {props.links && props.links.next ? <span className="button" onClick={() => {props.paginateClick(fixLinks(props.links.next), (props.pageNum + 1) );window.scrollTo({top: 0, left: 0, behavior: 'smooth'});}}>&gt;</span> : <span className="button no-hover"></span>}
       </div>
 	)
 }
