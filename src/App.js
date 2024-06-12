@@ -23,6 +23,7 @@ function App() {
   function handleErrors(response) {
     if (!response.ok) {
       throw Error(response);
+      console.log(response)
     }
     return response;
   }
